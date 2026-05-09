@@ -110,7 +110,7 @@
 - AWS RDS PostgreSQL database
 - Nginx reverse proxy with HTTPS
 - Custom domain configuration
-- GitHub Actions CI/CD *(in progress)*
+- GitHub Actions CI/CD 
 
 </td>
 </tr>
@@ -253,7 +253,7 @@ Pull & Restart Container
 | ✅ | JWT authentication + refresh tokens |
 | ✅ | Read receipts & online presence |
 | ✅ | Docker + AWS EC2 deployment |
-| 🔄 | GitHub Actions CI/CD |
+| ✅ | GitHub Actions CI/CD |
 | 🔲 | Typing indicators |
 | 🔲 | Redis for scalable presence tracking |
 | 🔲 | Message pagination |
