@@ -288,7 +288,7 @@ Building ConnectChat gave me hands-on experience across the full stack:
 
 [![GitHub](https://img.shields.io/badge/GitHub-Karthik0806-181717?style=for-the-badge&logo=github)](https://github.com/Karthik0806)
 [![Portfolio](https://img.shields.io/badge/Portfolio-karthiknarravula.dev-4F8EF7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://karthiknarravula.dev)
-[![LinkedIn](https://www.linkedin.com/in/karthik-narravula)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Karthik%20Narravula-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/karthik-narravula)
 
 </div>
 
