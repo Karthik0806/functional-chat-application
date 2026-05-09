@@ -1,0 +1,96 @@
+package com.karthik.functionalchatapplication.service;
+
+import com.karthik.functionalchatapplication.entity.RefreshToken;
+import com.karthik.functionalchatapplication.dto.AuthResponse;
+import com.karthik.functionalchatapplication.dto.LoginRequest;
+import com.karthik.functionalchatapplication.dto.RefreshRequest;
+import com.karthik.functionalchatapplication.dto.RegisterRequest;
+
+import com.karthik.functionalchatapplication.entity.User;
+
+import com.karthik.functionalchatapplication.exception.UserAlreadyExistsException;
+import com.karthik.functionalchatapplication.repo.RefreshTokenRepo;
+import com.karthik.functionalchatapplication.repo.UserRepo;
+import com.karthik.functionalchatapplication.security.JwtService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class AuthService {
+
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+    private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final RefreshTokenRepo refreshTokenRepo;
+    public AuthResponse login(LoginRequest request) {
+
+        log.info("Login attempt for user: {}", request.getUsername());
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        String accessToken = jwtService.generateToken(request.getUsername());
+        String refreshTokenValue = jwtService.generateRefreshToken();
+
+        RefreshToken refreshToken = RefreshToken.builder()
+                        .token(refreshTokenValue)
+                        .username(request.getUsername())
+                        .expiryDate(LocalDateTime.now().plusDays(7))
+                        .build();
+        refreshTokenRepo.save(refreshToken);
+
+        log.info("Login successful for user: {}", request.getUsername());
+
+        return AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshTokenValue)
+                .build();
+    }
+
+    public String register(RegisterRequest request) {
+
+        log.info("Registration attempt for user: {}", request.getUsername());
+
+        if (userRepo.findByUsername(request.getUsername()).isPresent()) {
+
+            throw new UserAlreadyExistsException("Username already exists");
+        }
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .build();
+
+        userRepo.save(user);
+
+        log.info("User registered successfully: {}", request.getUsername());
+        return "User registered successfully";
+    }
+
+    public AuthResponse refreshToken(RefreshRequest request) {
+
+        RefreshToken refreshToken = refreshTokenRepo.findByToken(request.getRefreshToken())
+                .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
+
+        if (refreshToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+
+            throw new RuntimeException("Refresh token expired");
+        }
+
+        String newAccessToken = jwtService.generateToken(refreshToken.getUsername());
+
+        log.info("Access token refreshed for user: {}", refreshToken.getUsername());
+
+        return AuthResponse.builder()
+                .accessToken(newAccessToken)
+                .refreshToken(refreshToken.getToken())
+                .build();
+    }
+}

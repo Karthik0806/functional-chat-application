@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: functional-chat-application
+  profiles:
+    active: prod

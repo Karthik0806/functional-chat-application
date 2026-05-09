@@ -1,0 +1,78 @@
+### Docs ###
+HELP.md
+
+### Maven ###
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Spring Boot Config ###
+src/main/resources/application-dev.properties
+src/main/resources/application-local.properties
+src/main/resources/application-secret.properties
+
+# Ignore all environment-specific configs
+src/main/resources/application-*.properties
+
+# Keep the default config tracked
+!src/main/resources/application.properties
+
+### Static Files ###
+src/main/resources/static/index.html
+
+### Environment Files ###
+.env
+.env.*
+
+### Logs ###
+logs/
+*.log
+
+### STS / Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Gradle ###
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### OS Files ###
+.DS_Store
+Thumbs.db
+
+### Java ###
+*.class
+hs_err_pid*
+replay_pid*
+
+### Coverage / Testing ###
+coverage/
+jacoco.exec
+
+### Misc ###
+*.swp
+*.swo
