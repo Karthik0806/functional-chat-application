@@ -1,228 +1,222 @@
-ConnectChat
+<div align="center">
 
-A real-time full-stack chat application built with Spring Boot, WebSockets, JWT Authentication, PostgreSQL, Docker, AWS EC2, Nginx, and React.
+# ConnectChat
 
-Live Demo
+### Real-Time Full Stack Chat Application
 
-* Frontend: https://chat.karthiknarravula.dev
-* Backend API: https://api.karthiknarravula.dev
-* Swagger Documentation: https://api.karthiknarravula.dev/swagger-ui/index.html
+A production-style real-time chat platform built with Spring Boot, WebSockets, JWT authentication, Docker, AWS EC2, PostgreSQL, and React.
 
-⸻
+<br/>
 
-Features
+![Java](https://img.shields.io/badge/Java-25-orange?style=for-the-badge)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-green?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue?style=for-the-badge)
+![AWS](https://img.shields.io/badge/AWS-EC2-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Educational-orange?style=for-the-badge)
 
-Authentication & Security
+Built with Spring Boot · WebSockets · JWT · PostgreSQL · Docker · AWS · React
 
-* JWT-based authentication
-* Access + Refresh token flow
-* Secure protected APIs with Spring Security
-* Password validation
-* Automatic token refresh handling
+</div>
 
-Real-Time Messaging
+---
 
-* Private real-time messaging
-* WebSocket + STOMP communication
-* Online/offline user tracking
-* Read receipts
-* Typing indicators (planned for V2)
-* Optimistic UI updates
+# 📸 Screenshots
 
-Frontend
+<p align="center">
+  <img src="./screenshots/login-page.png" width="45%" />
+  <img src="./screenshots/register-page.png" width="45%" />
+</p>
 
-* Responsive React UI
-* Modern chat interface
-* Mobile-friendly sidebar
-* Conversation previews
-* Real-time updates without refresh
+<p align="center">
+  <img src="./screenshots/chat.png" width="90%" />
+</p>
 
-Backend
+<p align="center">
+  <img src="./screenshots/search.png" width="45%" />
+  <img src="./screenshots/search-user.png" width="45%" />
+</p>
 
-* REST APIs with Swagger/OpenAPI
-* Layered Spring Boot architecture
-* PostgreSQL database integration
-* JPA + Hibernate
-* DTO-based responses
-* Global exception handling
+---
 
-Deployment & DevOps
+# 🔗 Live Links
 
-* Dockerized backend
-* AWS EC2 deployment
-* AWS RDS PostgreSQL database
-* Nginx reverse proxy
-* HTTPS support
-* Custom domain configuration
-* GitHub Actions CI/CD (in progress)
+| Resource | URL |
+|---|---|
+| Frontend | https://chat.karthiknarravula.dev |
+| Backend API | https://api.karthiknarravula.dev |
+| Swagger UI | https://api.karthiknarravula.dev/swagger-ui/index.html |
+| OpenAPI JSON | https://api.karthiknarravula.dev/v3/api-docs |
 
-⸻
+---
 
-Tech Stack
+# ✨ Features
 
-Backend
+## 🔐 Authentication & Security
+- JWT-based authentication with access + refresh token flow
+- Secure protected APIs using Spring Security
+- Password validation and automatic token refresh handling
 
-* Java 25
-* Spring Boot 3
-* Spring Security
-* Spring WebSocket
-* Spring Data JPA
-* Hibernate
-* PostgreSQL
-* JWT Authentication
+## ⚡ Real-Time Messaging
+- Private real-time messaging using WebSocket + STOMP
+- Online/offline user tracking
+- Read receipts
+- Optimistic UI updates
+- Typing indicators *(planned for V2)*
 
-Frontend
+## 🎨 Frontend
+- Responsive React UI with modern chat experience
+- Mobile-friendly sidebar with conversation previews
+- Real-time updates without refresh
 
-* React
-* React Router
-* SockJS
-* STOMP.js
-* date-fns
+## 🛠 Backend
+- REST APIs documented with Swagger / OpenAPI
+- Layered Spring Boot architecture
+- DTO-based responses
+- Global exception handling
+- PostgreSQL integration with JPA + Hibernate
 
-DevOps & Cloud
+## ☁️ DevOps & Cloud
+- Dockerized backend deployed on AWS EC2
+- AWS RDS PostgreSQL database
+- Nginx reverse proxy with HTTPS
+- Custom domain configuration
+- GitHub Actions CI/CD *(in progress)*
 
-* Docker
-* Docker Hub
-* AWS EC2
-* AWS RDS
-* Nginx
-* GitHub Actions
-* Vercel
+---
 
-⸻
+# 🛠 Tech Stack
 
-Architecture
+| Layer | Technologies |
+|---|---|
+| **Backend** | Java 25, Spring Boot 3, Spring Security, Spring WebSocket, Spring Data JPA, Hibernate, PostgreSQL, JWT |
+| **Frontend** | React, React Router, SockJS, STOMP.js, date-fns |
+| **DevOps / Cloud** | Docker, Docker Hub, AWS EC2, AWS RDS, Nginx, GitHub Actions, Vercel |
 
-React Frontend (Vercel)
-↓
+---
+
+# 🏗 Architecture
+
+```text
+React Frontend  (Vercel)
+       │
+       ▼
 Nginx Reverse Proxy
-↓
-Spring Boot Backend (Docker on EC2)
-↓
-PostgreSQL (AWS RDS)
+       │
+       ▼
+Spring Boot Backend  (Docker on EC2)
+       │
+       ▼
+PostgreSQL Database  (AWS RDS)
+```
 
-⸻
+---
 
-Screenshots
+# 🚀 Running Locally
 
-Login Page
+## 1. Clone Repository
 
-(Add screenshot here)
-
-Chat Interface
-
-(Add screenshot here)
-
-Swagger Documentation
-
-(Add screenshot here)
-
-⸻
-
-API Documentation
-
-Swagger UI:
-
-https://api.karthiknarravula.dev/swagger-ui/index.html
-
-OpenAPI Docs:
-
-https://api.karthiknarravula.dev/v3/api-docs
-
-⸻
-
-Running Locally
-
-Clone Repository
-
+```bash
 git clone https://github.com/Karthik0806/functional-chat-application.git
 cd functional-chat-application
+```
 
-Configure Environment Variables
+## 2. Configure Environment Variables
 
-Create a .env file:
+Create a `.env` file in the project root:
 
+```env
 SPRING_PROFILES_ACTIVE=prod
+
 DB_URL=your_database_url
 DB_USERNAME=your_database_username
 DB_PASSWORD=your_database_password
+
 JWT_SECRET=your_jwt_secret
+```
 
-Run Backend
+## 3. Run Backend
 
+```bash
 ./mvnw spring-boot:run
+```
 
-Run Frontend
+## 4. Run Frontend
 
+```bash
 npm install
 npm start
+```
 
-⸻
+---
 
-Docker Deployment
+# 🐳 Docker Deployment
 
-Build Docker Image
+## Build Docker Image
 
+```bash
 docker buildx build \
---platform linux/amd64 \
--t karthi2005/connectchat-backend:latest \
---push .
+  --platform linux/amd64 \
+  -t karthi2005/connectchat-backend:latest \
+  --push .
+```
 
-Deploy on EC2
+## Deploy to EC2
 
+```bash
 ./deploy.sh
+```
 
-⸻
+---
 
-CI/CD Pipeline
+# ⚙️ CI/CD Pipeline
 
-GitHub Actions automatically:
+The GitHub Actions workflow automatically:
 
-* Builds Docker image
-* Pushes image to Docker Hub
-* Connects to EC2 through SSH
-* Deploys latest backend version
+1. Builds the Docker image
+2. Pushes it to Docker Hub
+3. Connects to EC2 via SSH
+4. Deploys the latest backend version
 
-⸻
+---
 
-Future Improvements
+# 🗺 Roadmap
 
-* Redis for scalable online-user tracking
-* Message pagination
-* Group chat support
-* Push notifications
-* File/image sharing
-* Voice/video calls
-* Kubernetes deployment
-* Monitoring with Prometheus & Grafana
+- [ ] Redis for scalable online-user tracking
+- [ ] Message pagination
+- [ ] Group chat support
+- [ ] Push notifications
+- [ ] File and image sharing
+- [ ] Voice / video calls
+- [ ] Kubernetes deployment
+- [ ] Monitoring with Prometheus & Grafana
 
-⸻
+---
 
-What I Learned
+# 📚 What I Learned
 
-This project helped me gain hands-on experience with:
+Building ConnectChat provided hands-on experience with:
 
-* Real-time systems using WebSockets
-* JWT authentication flows
-* Docker containerization
-* Reverse proxy configuration with Nginx
-* Cloud deployment on AWS
-* CI/CD pipelines
-* Full-stack architecture design
-* Production debugging and deployment troubleshooting
+- Designing real-time systems using WebSockets and STOMP
+- Implementing secure JWT authentication flows
+- Containerizing applications with Docker
+- Configuring Nginx as a reverse proxy
+- Deploying and debugging on AWS EC2 + RDS
+- Setting up CI/CD pipelines with GitHub Actions
+- Full-stack architecture design
+- Production debugging and deployment troubleshooting
 
-⸻
+---
 
-Author
+# 👤 Author
 
-Karthik Narravula
+## Karthik Narravula
 
-* GitHub: https://github.com/Karthik0806
-* Portfolio: https://karthiknarravula.dev
-* LinkedIn: (Add your LinkedIn here)
+- GitHub: https://github.com/Karthik0806
+- Portfolio: https://karthiknarravula.dev
 
-⸻
+---
 
-License
+# 📄 License
 
-This project is for educational and portfolio purposes.
+This project is for educational and portfolio purposes. Feel free to explore the code and architecture for learning.
