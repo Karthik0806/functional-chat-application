@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Slf4j
@@ -24,7 +24,7 @@ public class ChatService {
                 .sender(sender)
                 .receiver(chatMessage.getReceiver())
                 .content(chatMessage.getContent())
-                .timestamp(LocalDateTime.now())
+                .timestamp(Instant.now())
                 .status(MessageStatus.SENT)
                 .build();
 

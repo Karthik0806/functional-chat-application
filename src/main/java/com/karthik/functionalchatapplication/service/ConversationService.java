@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class ConversationService {
         if(existingConversation.isPresent()){
             conversation = existingConversation.get();
             conversation.setLastMessage(messageContent);
-            conversation.setLastMessageTime(LocalDateTime.now());
+            conversation.setLastMessageTime(Instant.now());
 
             if(receiver.equals(conversation.getUser1())){
                 conversation.setUnreadCountUser1(conversation.getUnreadCountUser1() + 1);
@@ -43,7 +43,7 @@ public class ConversationService {
                             .user1(user1)
                             .user2(user2)
                             .lastMessage(messageContent)
-                            .lastMessageTime(LocalDateTime.now())
+                            .lastMessageTime(Instant.now())
                             .unreadCountUser1(receiver.equals(user1) ? 1 : 0)
                             .unreadCountUser2(receiver.equals(user2) ? 1 : 0)
                             .build();

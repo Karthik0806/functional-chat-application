@@ -4,7 +4,8 @@ import com.karthik.functionalchatapplication.Enumeration.MessageStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+
 
 
 @Entity
@@ -22,7 +23,7 @@ public class Message {
     private String sender;
     private String receiver;
     private String content;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
     @Enumerated(EnumType.STRING)
     private MessageStatus status;
 }

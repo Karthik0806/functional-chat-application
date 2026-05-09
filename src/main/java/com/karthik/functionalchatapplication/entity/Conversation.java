@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+
 
 @Entity
 @Getter
@@ -21,7 +22,7 @@ public class Conversation {
     private String user1;
     private String user2;
     private String lastMessage;
-    private LocalDateTime lastMessageTime;
+    private Instant lastMessageTime;
     private Integer unreadCountUser1;
     private Integer unreadCountUser2;
 }
