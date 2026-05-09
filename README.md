@@ -1,42 +1,67 @@
 <div align="center">
 
-# ConnectChat
+<br/>
 
-### Real-Time Full Stack Chat Application
-
-A production-style real-time chat platform built with Spring Boot, WebSockets, JWT authentication, Docker, AWS EC2, PostgreSQL, and React.
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=4F8EF7&center=true&vCenter=true&width=600&lines=ConnectChat+%F0%9F%92%AC;Real-Time+Chat+Platform" alt="ConnectChat" />
 
 <br/>
 
-![Java](https://img.shields.io/badge/Java-25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-RDS-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+**A production-grade real-time chat platform built with a modern full-stack architecture.**
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-chat.karthiknarravula.dev-0A66C2?style=for-the-badge)](https://chat.karthiknarravula.dev)
-[![API Docs](https://img.shields.io/badge/📖_API_Docs-Swagger_UI-85EA2D?style=for-the-badge)](https://api.karthiknarravula.dev/swagger-ui/index.html)
+<br/>
+
+[![Live Demo](https://img.shields.io/badge/%F0%9F%9A%80%20Live%20Demo-chat.karthiknarravula.dev-4F8EF7?style=for-the-badge&labelColor=0d1117)](https://chat.karthiknarravula.dev)
+[![API Docs](https://img.shields.io/badge/%F0%9F%93%96%20API%20Docs-Swagger%20UI-2ea44f?style=for-the-badge&labelColor=0d1117)](https://api.karthiknarravula.dev/swagger-ui/index.html)
+[![Portfolio](https://img.shields.io/badge/%F0%9F%8C%90%20Portfolio-karthiknarravula.dev-9b59b6?style=for-the-badge&labelColor=0d1117)](https://karthiknarravula.dev)
+
+<br/>
+
+![Java](https://img.shields.io/badge/Java_25-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
 
 </div>
+
+<br/>
 
 ---
 
 ## 📸 Screenshots
 
-<p align="center">
-  <img src="./screenshots/login_page.png" width="45%" />
-  <img src="./screenshots/register_page.png" width="45%" />
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="./screenshots/chat.png" width="90%" />
-</p>
+<table>
+  <tr>
+    <td align="center"><b>Login</b></td>
+    <td align="center"><b>Register</b></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/login_page.png" width="100%"/></td>
+    <td><img src="./screenshots/register_page.png" width="100%"/></td>
+  </tr>
+</table>
 
-<p align="center">
-  <img src="./screenshots/search.png" width="45%" />
-  <img src="./screenshots/search_user.png" width="45%" />
-</p>
+<img src="./screenshots/chat.png" width="90%"/>
+<br/><em>Chat Interface</em>
+
+<br/><br/>
+
+<table>
+  <tr>
+    <td align="center"><b>Search Users</b></td>
+    <td align="center"><b>Search Results</b></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/search.png" width="100%"/></td>
+    <td><img src="./screenshots/search_user.png" width="100%"/></td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
@@ -44,67 +69,52 @@ A production-style real-time chat platform built with Spring Boot, WebSockets, J
 
 | Resource | URL |
 |:---|:---|
-| Frontend | https://chat.karthiknarravula.dev |
-| Backend API | https://api.karthiknarravula.dev |
-| Swagger UI | https://api.karthiknarravula.dev/swagger-ui/index.html |
-| OpenAPI JSON | https://api.karthiknarravula.dev/v3/api-docs |
+| 🌐 Frontend | [chat.karthiknarravula.dev](https://chat.karthiknarravula.dev) |
+| ⚙️ Backend API | [api.karthiknarravula.dev](https://api.karthiknarravula.dev) |
+| 📖 Swagger UI | [/swagger-ui/index.html](https://api.karthiknarravula.dev/swagger-ui/index.html) |
+| 📄 OpenAPI JSON | [/v3/api-docs](https://api.karthiknarravula.dev/v3/api-docs) |
 
 ---
 
 ## ✨ Features
 
-<details open>
-<summary><b>🔐 Authentication & Security</b></summary>
-<br/>
+<table>
+<tr>
+<td width="50%">
 
-- JWT-based authentication with access + refresh token flow
+### 🔐 Authentication & Security
+- JWT access + refresh token flow
 - Protected APIs via Spring Security
-- Password validation and automatic token refresh handling
+- Password validation
+- Automatic token refresh handling
 
-</details>
+### ⚡ Real-Time Messaging
+- Private messaging via WebSocket + STOMP
+- Online / offline user presence tracking
+- Read receipts
+- Optimistic UI updates
+- Typing indicators *(V2 planned)*
 
-<details open>
-<summary><b>⚡ Real-Time Messaging</b></summary>
-<br/>
+</td>
+<td width="50%">
 
-- Private real-time messaging via WebSocket + STOMP
-- Online/offline user presence tracking
-- Read receipts and optimistic UI updates
-- Typing indicators *(planned for V2)*
+### 🎨 Frontend
+- Responsive React UI
+- Modern chat interface
+- Mobile-friendly sidebar
+- Conversation previews
+- Live updates without page refresh
 
-</details>
-
-<details open>
-<summary><b>🎨 Frontend</b></summary>
-<br/>
-
-- Responsive React UI with a modern chat experience
-- Mobile-friendly sidebar with conversation previews
-- Real-time updates without page refresh
-
-</details>
-
-<details open>
-<summary><b>🛠 Backend</b></summary>
-<br/>
-
-- REST APIs documented with Swagger / OpenAPI
-- Layered Spring Boot architecture with DTO-based responses
-- Global exception handling
-- PostgreSQL integration via JPA + Hibernate
-
-</details>
-
-<details open>
-<summary><b>☁️ DevOps & Cloud</b></summary>
-<br/>
-
-- Dockerized backend deployed on AWS EC2
-- Managed PostgreSQL via AWS RDS
-- Nginx reverse proxy with HTTPS and custom domain
+### ☁️ DevOps & Cloud
+- Dockerized backend on AWS EC2
+- AWS RDS PostgreSQL database
+- Nginx reverse proxy with HTTPS
+- Custom domain configuration
 - GitHub Actions CI/CD *(in progress)*
 
-</details>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -112,25 +122,39 @@ A production-style real-time chat platform built with Spring Boot, WebSockets, J
 
 | Layer | Technologies |
 |:---|:---|
-| **Backend** | Java 25, Spring Boot 3, Spring Security, Spring WebSocket, Spring Data JPA, Hibernate, PostgreSQL, JWT |
-| **Frontend** | React, React Router, SockJS, STOMP.js, date-fns |
-| **DevOps / Cloud** | Docker, Docker Hub, AWS EC2, AWS RDS, Nginx, GitHub Actions, Vercel |
+| **Backend** | Java 25 · Spring Boot 3 · Spring Security · Spring WebSocket · Spring Data JPA · Hibernate · PostgreSQL · JWT |
+| **Frontend** | React · React Router · SockJS · STOMP.js · date-fns |
+| **DevOps / Cloud** | Docker · Docker Hub · AWS EC2 · AWS RDS · Nginx · GitHub Actions · Vercel |
 
 ---
 
 ## 🏗 Architecture
 
 ```
-React Frontend  (Vercel)
-       │
-       ▼
-Nginx Reverse Proxy
-       │
-       ▼
-Spring Boot Backend  (Docker on EC2)
-       │
-       ▼
-PostgreSQL Database  (AWS RDS)
+┌─────────────────────────────────┐
+│     React Frontend  (Vercel)    │
+└────────────────┬────────────────┘
+                 │  HTTPS
+                 ▼
+┌─────────────────────────────────┐
+│       Nginx Reverse Proxy       │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│  Spring Boot Backend            │
+│  (Docker Container on EC2)      │
+│                                 │
+│  ┌──────────┐  ┌─────────────┐ │
+│  │ REST API │  │  WebSocket  │ │
+│  └──────────┘  └─────────────┘ │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│    PostgreSQL Database          │
+│         (AWS RDS)               │
+└─────────────────────────────────┘
 ```
 
 ---
@@ -138,20 +162,18 @@ PostgreSQL Database  (AWS RDS)
 ## 🚀 Running Locally
 
 ### Prerequisites
-
 - Java 25+
 - Node.js 18+
-- PostgreSQL (local or remote)
-- Maven
+- PostgreSQL
 
-### 1. Clone the Repository
+### 1 · Clone the Repository
 
 ```bash
 git clone https://github.com/Karthik0806/functional-chat-application.git
 cd functional-chat-application
 ```
 
-### 2. Configure Environment Variables
+### 2 · Configure Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -165,26 +187,26 @@ DB_PASSWORD=your_database_password
 JWT_SECRET=your_jwt_secret
 ```
 
-### 3. Run the Backend
+### 3 · Start the Backend
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-### 4. Run the Frontend
+### 4 · Start the Frontend
 
 ```bash
 npm install
 npm start
 ```
 
-The app will be available at `http://localhost:3000`.
+> The app will be available at `http://localhost:3000`
 
 ---
 
 ## 🐳 Docker Deployment
 
-### Build the Image
+### Build & Push Image
 
 ```bash
 docker buildx build \
@@ -203,42 +225,58 @@ docker buildx build \
 
 ## ⚙️ CI/CD Pipeline
 
-The GitHub Actions workflow automatically:
+The GitHub Actions workflow runs automatically on every push:
 
-1. Builds the Docker image
-2. Pushes it to Docker Hub
-3. Connects to EC2 via SSH
-4. Deploys the latest backend version
+```
+Push to main
+     │
+     ▼
+Build Docker Image
+     │
+     ▼
+Push to Docker Hub
+     │
+     ▼
+SSH into EC2
+     │
+     ▼
+Pull & Restart Container
+```
 
 ---
 
 ## 🗺 Roadmap
 
-| Feature | Status |
-|:---|:---|
-| Redis for scalable online-user tracking | 🔲 Planned |
-| Message pagination | 🔲 Planned |
-| Group chat support | 🔲 Planned |
-| Push notifications | 🔲 Planned |
-| File and image sharing | 🔲 Planned |
-| Voice / video calls | 🔲 Planned |
-| Kubernetes deployment | 🔲 Planned |
-| Monitoring with Prometheus & Grafana | 🔲 Planned |
-| Typing indicators | 🔲 V2 |
+| Status | Feature |
+|:---:|:---|
+| ✅ | Private real-time messaging |
+| ✅ | JWT authentication + refresh tokens |
+| ✅ | Read receipts & online presence |
+| ✅ | Docker + AWS EC2 deployment |
+| 🔄 | GitHub Actions CI/CD |
+| 🔲 | Typing indicators |
+| 🔲 | Redis for scalable presence tracking |
+| 🔲 | Message pagination |
+| 🔲 | Group chat support |
+| 🔲 | File & image sharing |
+| 🔲 | Push notifications |
+| 🔲 | Voice / video calls |
+| 🔲 | Kubernetes deployment |
+| 🔲 | Monitoring with Prometheus & Grafana |
 
 ---
 
 ## 📚 What I Learned
 
-Building ConnectChat provided hands-on experience with:
+Building ConnectChat gave me hands-on experience across the full stack:
 
-- **Real-time systems** — designing WebSocket + STOMP message flows
-- **Security** — implementing JWT access/refresh token authentication
-- **Containerization** — building and shipping Docker images
-- **Infrastructure** — configuring Nginx as a reverse proxy with SSL
-- **Cloud deployment** — running and debugging on AWS EC2 + RDS
-- **CI/CD** — automating deployments with GitHub Actions
-- **Full-stack design** — making frontend, backend, and infrastructure work cohesively in production
+- **Real-time systems** — Designing bidirectional communication with WebSockets and STOMP
+- **Security** — Implementing a robust JWT access + refresh token flow with Spring Security
+- **Containerization** — Dockerizing a Spring Boot app for consistent, portable deployments
+- **Reverse proxying** — Configuring Nginx for SSL termination and API routing
+- **Cloud deployment** — Provisioning, deploying, and debugging on AWS EC2 + RDS
+- **CI/CD** — Automating the build and deploy pipeline with GitHub Actions
+- **Production mindset** — Troubleshooting in a live environment and designing for reliability
 
 ---
 
@@ -249,7 +287,7 @@ Building ConnectChat provided hands-on experience with:
 **Karthik Narravula**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Karthik0806-181717?style=for-the-badge&logo=github)](https://github.com/Karthik0806)
-[![Portfolio](https://img.shields.io/badge/Portfolio-karthiknarravula.dev-0A66C2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://karthiknarravula.dev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-karthiknarravula.dev-4F8EF7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://karthiknarravula.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-handle)
 
 </div>
@@ -258,4 +296,12 @@ Building ConnectChat provided hands-on experience with:
 
 ## 📄 License
 
-This project is for educational and portfolio purposes. Feel free to explore the code and architecture for learning.
+This project is built for educational and portfolio purposes. Feel free to explore the code and architecture — and don't forget to star ⭐ the repo if you found it useful!
+
+---
+
+<div align="center">
+
+*Made with ☕ and a lot of debugging by [Karthik Narravula](https://karthiknarravula.dev)*
+
+</div>
