@@ -145,9 +145,9 @@
 │  Spring Boot Backend            │
 │  (Docker Container on EC2)      │
 │                                 │
-│  ┌──────────┐  ┌─────────────┐ │
-│  │ REST API │  │  WebSocket  │ │
-│  └──────────┘  └─────────────┘ │
+│  ┌──────────┐  ┌─────────────┐  │
+│  │ REST API │  │  WebSocket  │  │
+│  └──────────┘  └─────────────┘  │
 └────────────────┬────────────────┘
                  │
                  ▼
@@ -276,7 +276,7 @@ Building ConnectChat gave me hands-on experience across the full stack:
 - **Reverse proxying** — Configuring Nginx for SSL termination and API routing
 - **Cloud deployment** — Provisioning, deploying, and debugging on AWS EC2 + RDS
 - **CI/CD** — Automating the build and deploy pipeline with GitHub Actions
-- **Deployment & debugging — Troubleshooting issues across Docker, Nginx, and AWS infrastructure
+- Deployment & debugging — Troubleshooting issues across Docker, Nginx, and AWS infrastructure
 
 ---
 
