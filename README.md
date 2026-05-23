@@ -122,7 +122,7 @@
 
 | Layer | Technologies |
 |:---|:---|
-| **Backend** | Java 25 · Spring Boot 3 · Spring Security · Spring WebSocket · Spring Data JPA · Hibernate · PostgreSQL · JWT |
+| **Backend** | Java 21 · Spring Boot 3 · Spring Security · Spring WebSocket · Spring Data JPA · Hibernate · PostgreSQL · JWT |
 | **Frontend** | React · React Router · SockJS · STOMP.js · date-fns |
 | **DevOps / Cloud** | Docker · Docker Hub · AWS EC2 · AWS RDS · Nginx · GitHub Actions · Vercel |
 
@@ -162,7 +162,7 @@
 ## 🚀 Running Locally
 
 ### Prerequisites
-- Java 25+
+- Java 21+
 - Node.js 18+
 - PostgreSQL
 
