@@ -6,7 +6,7 @@
 
 <br/>
 
-**A production-grade real-time chat platform built with a modern full-stack architecture.**
+**Real-time chat platform with WebSocket messaging, JWT authentication, and AWS deployment.**
 
 <br/>
 
@@ -16,7 +16,7 @@
 
 <br/>
 
-![Java](https://img.shields.io/badge/Java_25-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Java](https://img.shields.io/badge/Java_21-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=flat-square&logo=springboot&logoColor=white)
 ![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
@@ -276,7 +276,7 @@ Building ConnectChat gave me hands-on experience across the full stack:
 - **Reverse proxying** — Configuring Nginx for SSL termination and API routing
 - **Cloud deployment** — Provisioning, deploying, and debugging on AWS EC2 + RDS
 - **CI/CD** — Automating the build and deploy pipeline with GitHub Actions
-- **Production mindset** — Troubleshooting in a live environment and designing for reliability
+- **Deployment & debugging — Troubleshooting issues across Docker, Nginx, and AWS infrastructure
 
 ---
 
