@@ -29,6 +29,11 @@ public class AuthController {
 
         return ResponseEntity.ok(authService.login(request));
     }
+    @PostMapping("/logout")
+    public ResponseEntity<APIResponse> logout(@RequestBody RefreshRequest request) {
+        authService.logout(request.getRefreshToken());
+        return ResponseEntity.ok(APIResponse.builder().message("Logged out successfully").build());
+    }
 
     @Operation(summary = "Register user", description = "Creates new user account")
     @ApiResponses(value = {

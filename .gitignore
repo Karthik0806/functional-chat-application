@@ -11,6 +11,7 @@ target/
 src/main/resources/application-dev.properties
 src/main/resources/application-local.properties
 src/main/resources/application-secret.properties
+src/main/resources/application-dev.yml
 
 # Ignore all environment-specific configs
 src/main/resources/application-*.properties

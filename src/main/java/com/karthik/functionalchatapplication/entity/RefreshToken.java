@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -21,5 +21,5 @@ public class RefreshToken {
     private Long id;
     private String token;
     private String username;
-    private LocalDateTime expiryDate;
+    private Instant expiryDate;
 }

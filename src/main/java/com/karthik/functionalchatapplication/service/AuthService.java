@@ -19,7 +19,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -36,13 +38,15 @@ public class AuthService {
         log.info("Login attempt for user: {}", request.getUsername());
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        refreshTokenRepo.deleteByUsername(request.getUsername());
         String accessToken = jwtService.generateToken(request.getUsername());
         String refreshTokenValue = jwtService.generateRefreshToken();
+
 
         RefreshToken refreshToken = RefreshToken.builder()
                         .token(refreshTokenValue)
                         .username(request.getUsername())
-                        .expiryDate(LocalDateTime.now().plusDays(7))
+                        .expiryDate(Instant.now().plus(7, ChronoUnit.DAYS))
                         .build();
         refreshTokenRepo.save(refreshToken);
 
@@ -52,6 +56,10 @@ public class AuthService {
                 .accessToken(accessToken)
                 .refreshToken(refreshTokenValue)
                 .build();
+    }
+    public void logout(String refreshToken) {
+
+        refreshTokenRepo.findByToken(refreshToken).ifPresent(refreshTokenRepo::delete);
     }
 
     public String register(RegisterRequest request) {
@@ -79,18 +87,27 @@ public class AuthService {
         RefreshToken refreshToken = refreshTokenRepo.findByToken(request.getRefreshToken())
                 .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
 
-        if (refreshToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-
+        if (refreshToken.getExpiryDate().isBefore(Instant.now())) {
             throw new RuntimeException("Refresh token expired");
         }
 
         String newAccessToken = jwtService.generateToken(refreshToken.getUsername());
 
+        String newRefresh = jwtService.generateRefreshToken();
+        RefreshToken newRefreshToken = RefreshToken.builder()
+                .token(newRefresh)
+                .username(refreshToken.getUsername())
+                .expiryDate(Instant.now().plus(7, ChronoUnit.DAYS))
+                .build();
+        refreshTokenRepo.save(newRefreshToken);
         log.info("Access token refreshed for user: {}", refreshToken.getUsername());
+        refreshTokenRepo.delete(refreshToken);
+
+
 
         return AuthResponse.builder()
                 .accessToken(newAccessToken)
-                .refreshToken(refreshToken.getToken())
+                .refreshToken(newRefresh)
                 .build();
     }
 }

@@ -29,7 +29,16 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         String token = authHeader.substring(7);
         if(!jwtService.isValid(token)){
-            filterChain.doFilter(request,response);
+            SecurityContextHolder.clearContext();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("""
+
+        {
+        "error": "Unauthorized",
+          "message": "Invalid or expired token"
+        }
+        """);
             return;
         }
         String username = jwtService.extractUsername(token);

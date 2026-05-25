@@ -1,8 +1,12 @@
 package com.karthik.functionalchatapplication.security;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +15,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class JwtService {
 
     @Value("${jwt.secret}")
@@ -30,6 +35,7 @@ public class JwtService {
 
         return Jwts.builder()
                 .setSubject(username)
+                .claim("type","access")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(key)
@@ -47,17 +53,31 @@ public class JwtService {
     }
 
     public boolean isValid(String token) {
-
         try {
             Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token);
             return true;
-
+        } catch (ExpiredJwtException e) {
+            log.warn("JWT expired");
+        } catch (MalformedJwtException e) {
+            log.warn("Malformed JWT");
+        } catch (SignatureException e) {
+            log.warn("Invalid JWT signature");
         } catch (Exception e) {
-            return false;
+            log.warn("JWT validation failed");
         }
+        return false;
+    }
+    public Date extractExpiration(String token) {
+
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getExpiration();
     }
 
     public String generateRefreshToken() {
