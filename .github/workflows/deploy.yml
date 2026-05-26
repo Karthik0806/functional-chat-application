@@ -37,22 +37,10 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          cat << 'EOF' > private_key.pem
-          ${{ secrets.EC2_SSH_KEY }}
-          EOF
+          echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > private_key.pem
 
           chmod 600 private_key.pem
 
-          echo "=== PRIVATE KEY FINGERPRINT ==="
-          ssh-keygen -lf private_key.pem
-
-          echo "=== TEST SSH CONNECTION ==="
-          ssh -vvv -o StrictHostKeyChecking=no \
-              -i private_key.pem \
-              ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-              "echo CONNECTED"
-
-          echo "=== RUN DEPLOY ==="
           ssh -o StrictHostKeyChecking=no \
               -i private_key.pem \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
