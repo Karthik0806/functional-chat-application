@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegisterRequest {
-
     @NotBlank(message = "Username is required")
     @Size(min = 4, max = 20, message = "Username must be 4-20 characters")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username can contain only letters, numbers and underscore")
