@@ -36,6 +36,9 @@ jobs:
             -t karthi2005/connectchat-backend:latest \
             --push .
 
+      - name: Debug Secret Length
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY_B64 }}" | wc -c
       - name: Deploy to EC2
         run: |
           echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > private_key.pem
@@ -43,8 +46,8 @@ jobs:
           chmod 600 private_key.pem
 
           ssh -o StrictHostKeyChecking=no \
-              -i private_key.pem \
-              ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-              "cd ~/connectchat && chmod +x deploy.sh && ./deploy.sh"
+            -i private_key.pem \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+            "cd ~/connectchat && chmod +x deploy.sh && ./deploy.sh"
 
           rm -f private_key.pem
