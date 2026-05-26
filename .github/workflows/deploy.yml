@@ -35,16 +35,30 @@ jobs:
             -t karthi2005/connectchat-backend:latest \
             --push .
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
-
-      - name: Add EC2 to known hosts
+      - name: Setup SSH Key
         run: |
+          mkdir -p ~/.ssh
+
+          cat > ~/.ssh/id_rsa << 'EOF'
+          ${{ secrets.EC2_SSH_KEY }}
+          EOF
+
+          chmod 600 ~/.ssh/id_rsa
+
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Debug SSH Connection
+        run: |
+          ssh -vvv \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/id_rsa \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+            "echo SSH CONNECTION SUCCESS"
 
       - name: Deploy to EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+          ssh \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/id_rsa \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
             "cd ~/connectchat && chmod +x deploy.sh && ./deploy.sh"
