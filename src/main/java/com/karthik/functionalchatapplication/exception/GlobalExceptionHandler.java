@@ -139,6 +139,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError>
     handleGlobalException(Exception ex, HttpServletRequest request) {
 
+        ex.printStackTrace();
         log.error("Unhandled exception: ", ex);
 
         ApiError error = ApiError.builder()
