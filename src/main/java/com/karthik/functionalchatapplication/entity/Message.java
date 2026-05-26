@@ -9,7 +9,10 @@ import java.time.Instant;
 
 
 @Entity
-
+@Table(indexes = {
+        @Index(name = "idx_sender_receiver", columnList = "sender,receiver"),
+        @Index(name = "idx_timestamp", columnList = "timestamp")
+        })
 @Getter
 @Setter
 @AllArgsConstructor

@@ -1,15 +1,16 @@
 package com.karthik.functionalchatapplication.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
 
 
 @Entity
+@Table(indexes = {
+                @Index(name = "idx_user1_user2", columnList = "user1,user2"),
+                @Index(name = "idx_last_message_time", columnList = "lastMessageTime")
+        })
 @Getter
 @Setter
 @AllArgsConstructor

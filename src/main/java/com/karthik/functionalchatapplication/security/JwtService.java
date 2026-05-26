@@ -54,11 +54,14 @@ public class JwtService {
 
     public boolean isValid(String token) {
         try {
-            Jwts.parserBuilder()
+            var claims = Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
-                    .parseClaimsJws(token);
-            return true;
+                    .parseClaimsJws(token)
+                    .getBody();
+            String type = claims.get("type", String.class);
+
+            return "access".equals(type);
         } catch (ExpiredJwtException e) {
             log.warn("JWT expired");
         } catch (MalformedJwtException e) {
@@ -82,5 +85,14 @@ public class JwtService {
 
     public String generateRefreshToken() {
         return UUID.randomUUID().toString();
+    }
+    public String extractTokenType(String token) {
+
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("type", String.class);
     }
 }

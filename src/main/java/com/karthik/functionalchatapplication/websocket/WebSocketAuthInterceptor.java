@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageDeliveryException;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
@@ -36,11 +37,25 @@ public class WebSocketAuthInterceptor implements ChannelInterceptor {
                         .get("token");
             }
 
-            if (token != null && jwtService.isValid(token)) {
-                String username = jwtService.extractUsername(token);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
-                accessor.setUser(auth);
+            if (token == null || !jwtService.isValid(token)) {
+
+                log.warn("Invalid WebSocket token");
+
+                throw new MessageDeliveryException("Invalid JWT token");
             }
+
+            String username = jwtService.extractUsername(token);
+
+            UsernamePasswordAuthenticationToken auth =
+                    new UsernamePasswordAuthenticationToken(
+                            username,
+                            null,
+                            Collections.emptyList()
+                    );
+
+            accessor.setUser(auth);
+
+            log.info("WebSocket authenticated for user: {}", username);
         }
         return message;
     }
