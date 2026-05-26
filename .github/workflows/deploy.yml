@@ -39,11 +39,11 @@ jobs:
         run: |
           mkdir -p ~/.ssh
 
-          cat > ~/.ssh/id_rsa << 'EOF'
-          ${{ secrets.EC2_SSH_KEY }}
-          EOF
+          printf "%s\n" "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
 
           chmod 600 ~/.ssh/id_rsa
+
+          ssh-keygen -lf ~/.ssh/id_rsa
 
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
