@@ -13,4 +13,5 @@ public interface UserRepo extends JpaRepository<User,Long> {
     List<User> findTop10ByUsernameContainingIgnoreCase(
             String username
     );
+
 }
