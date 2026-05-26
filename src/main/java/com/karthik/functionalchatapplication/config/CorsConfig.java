@@ -17,7 +17,8 @@ public class CorsConfig {
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of("https://functional-chat-applicati-git-9d8487-karthiks-projects-f9f59917.vercel.app",
                 "https://chat.karthiknarravula.dev",
-                "http://localhost:3000"));
+                "http://localhost:3000",
+                "http;//localhost:5173"));
 
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of(
