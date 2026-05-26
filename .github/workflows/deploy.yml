@@ -35,6 +35,17 @@ jobs:
             -t karthi2005/connectchat-backend:latest \
             --push .
 
+      - name: Debug SSH Key
+        run: |
+          cat << 'EOF' > private_key.pem
+          ${{ secrets.EC2_SSH_KEY }}
+          EOF
+
+          chmod 600 private_key.pem
+
+          echo "Testing key fingerprint..."
+          ssh-keygen -lf private_key.pem
+
       - name: Deploy to EC2
         run: |
           cat << 'EOF' > private_key.pem
