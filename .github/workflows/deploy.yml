@@ -1,5 +1,6 @@
 name: Deploy Backend
 
+
 on:
   push:
     branches:
@@ -35,32 +36,12 @@ jobs:
             -t karthi2005/connectchat-backend:latest \
             --push .
 
-      - name: Setup SSH Key
-        run: |
-          mkdir -p ~/.ssh
-
-          echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > ~/.ssh/id_rsa
-
-          chmod 600 ~/.ssh/id_rsa
-
-          file ~/.ssh/id_rsa
-
-          ssh-keygen -lf ~/.ssh/id_rsa
-
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Debug SSH Connection
-        run: |
-          ssh -vvv \
-            -o IdentitiesOnly=yes \
-            -i ~/.ssh/id_rsa \
-            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-            "echo SSH CONNECTION SUCCESS"
-
       - name: Deploy to EC2
-        run: |
-          ssh \
-            -o IdentitiesOnly=yes \
-            -i ~/.ssh/id_rsa \
-            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-            "cd ~/connectchat && chmod +x deploy.sh && ./deploy.sh"
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/connectchat
+            ./deploy.sh
