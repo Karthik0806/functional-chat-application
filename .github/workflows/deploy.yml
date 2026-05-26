@@ -35,17 +35,6 @@ jobs:
             -t karthi2005/connectchat-backend:latest \
             --push .
 
-      - name: Debug SSH Key
-        run: |
-          cat << 'EOF' > private_key.pem
-          ${{ secrets.EC2_SSH_KEY }}
-          EOF
-
-          chmod 600 private_key.pem
-
-          echo "Testing key fingerprint..."
-          ssh-keygen -lf private_key.pem
-
       - name: Deploy to EC2
         run: |
           cat << 'EOF' > private_key.pem
@@ -54,9 +43,19 @@ jobs:
 
           chmod 600 private_key.pem
 
+          echo "=== PRIVATE KEY FINGERPRINT ==="
+          ssh-keygen -lf private_key.pem
+
+          echo "=== TEST SSH CONNECTION ==="
+          ssh -vvv -o StrictHostKeyChecking=no \
+              -i private_key.pem \
+              ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+              "echo CONNECTED"
+
+          echo "=== RUN DEPLOY ==="
           ssh -o StrictHostKeyChecking=no \
               -i private_key.pem \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-              "cd ~/connectchat && ./deploy.sh"
+              "cd ~/connectchat && chmod +x deploy.sh && ./deploy.sh"
 
           rm -f private_key.pem
