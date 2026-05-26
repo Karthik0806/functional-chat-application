@@ -15,8 +15,8 @@ public interface RefreshTokenRepo extends JpaRepository<RefreshToken,Long> {
     Optional<RefreshToken> findByToken(String token);
 
 
-
     @Modifying
     @Transactional
     @Query("DELETE FROM RefreshToken r WHERE r.username = :username")
     void deleteByUsername(@Param("username") String username);
+}
