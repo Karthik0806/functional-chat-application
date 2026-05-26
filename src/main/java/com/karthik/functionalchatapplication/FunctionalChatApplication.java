@@ -12,4 +12,5 @@ public class FunctionalChatApplication {
         SpringApplication.run(FunctionalChatApplication.class, args);
     }
 
+
 }
