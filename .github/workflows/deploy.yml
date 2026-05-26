@@ -24,17 +24,14 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build \
-            -t karthi2005/connectchat-backend:latest \
-            .
+          docker build -t karthi2005/connectchat-backend:latest .
           docker push karthi2005/connectchat-backend:latest
 
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd ~/connectchat
-            ./deploy.sh
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+          ssh -o StrictHostKeyChecking=no -i private_key.pem \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+            "cd ~/connectchat && ./deploy.sh"
+          rm -f private_key.pem
