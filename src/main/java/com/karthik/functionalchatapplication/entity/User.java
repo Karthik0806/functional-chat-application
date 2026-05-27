@@ -1,5 +1,6 @@
 package com.karthik.functionalchatapplication.entity;
 
+import com.karthik.functionalchatapplication.Enumeration.AuthProvider;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,4 +22,8 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AuthProvider provider;
 }

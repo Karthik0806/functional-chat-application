@@ -1,5 +1,6 @@
 package com.karthik.functionalchatapplication.service;
 
+import com.karthik.functionalchatapplication.Enumeration.AuthProvider;
 import com.karthik.functionalchatapplication.entity.RefreshToken;
 import com.karthik.functionalchatapplication.dto.AuthResponse;
 import com.karthik.functionalchatapplication.dto.LoginRequest;
@@ -15,6 +16,7 @@ import com.karthik.functionalchatapplication.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,10 @@ public class AuthService {
 
         log.info("Login attempt for user: {}", request.getUsername());
 
+        User user = userRepo.findByUsername(request.getUsername()).orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
+        if (user.getProvider() == AuthProvider.GOOGLE) {
+            throw new BadCredentialsException("Please login using Google");
+        }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         refreshTokenRepo.deleteByUsername(request.getUsername());
         String accessToken = jwtService.generateToken(request.getUsername());
@@ -76,6 +82,7 @@ public class AuthService {
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .provider(AuthProvider.LOCAL)
                 .build();
 
         userRepo.save(user);
