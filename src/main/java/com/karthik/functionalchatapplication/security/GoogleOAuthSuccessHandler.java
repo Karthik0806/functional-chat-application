@@ -29,11 +29,7 @@ public class GoogleOAuthSuccessHandler implements AuthenticationSuccessHandler {
     private final RefreshTokenRepo refreshTokenRepo;
 
     @Override
-    public void onAuthenticationSuccess(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            Authentication authentication
-    ) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
 
