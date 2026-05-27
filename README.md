@@ -84,6 +84,7 @@
 
 ### 🔐 Authentication & Security
 - JWT access + refresh token flow
+- Google OAuth2 login integration
 - Protected APIs via Spring Security
 - Password validation
 - Automatic token refresh handling
@@ -122,7 +123,7 @@
 
 | Layer | Technologies |
 |:---|:---|
-| **Backend** | Java 21 · Spring Boot 3 · Spring Security · Spring WebSocket · Spring Data JPA · Hibernate · PostgreSQL · JWT |
+| **Backend** | Java 21 · Spring Boot 3 · Spring Security · Spring WebSocket · Spring Data JPA · Hibernate · PostgreSQL · JWT · OAuth2 Client |
 | **Frontend** | React · React Router · SockJS · STOMP.js · date-fns |
 | **DevOps / Cloud** | Docker · Docker Hub · AWS EC2 · AWS RDS · Nginx · GitHub Actions · Vercel |
 
@@ -156,6 +157,31 @@
 │         (AWS RDS)               │
 └─────────────────────────────────┘
 ```
+##🔐 Authentication Flow
+```
+User Login
+ __________________________________
+|    │                             |
+|    ├── Email + Password          |
+|    │        │                    |
+|    │        ▼                    |
+|    │   Spring Security           |
+|    │        │                    |
+|    │        ▼                    |
+|    │       JWT                   |
+|    |                             | 
+|    └── Google OAuth2             |
+|             │                    |
+|             ▼                    |
+|       Google Consent             |
+|             │                    |
+|             ▼                    |
+|      OAuth2 Callback             | 
+|             │                    |
+|             ▼                    |
+|       JWT Generation             |
+|__________________________________|
+```
 
 ---
 
@@ -179,6 +205,8 @@ Create a `.env` file in the project root:
 
 ```env
 SPRING_PROFILES_ACTIVE=prod
+CLIENT_ID=your_google_client_id
+CLIENT_SECRET=your_google_client_secret
 
 DB_URL=your_database_url
 DB_USERNAME=your_database_username
@@ -254,6 +282,8 @@ Pull & Restart Container
 | ✅ | Read receipts & online presence |
 | ✅ | Docker + AWS EC2 deployment |
 | ✅ | GitHub Actions CI/CD |
+| ✅ | Google oauth2 |
+| 🔲 | Contacts
 | 🔲 | Typing indicators |
 | 🔲 | Redis for scalable presence tracking |
 | 🔲 | Message pagination |
@@ -272,6 +302,7 @@ Building ConnectChat gave me hands-on experience across the full stack:
 
 - **Real-time systems** — Designing bidirectional communication with WebSockets and STOMP
 - **Security** — Implementing a robust JWT access + refresh token flow with Spring Security
+- **OAuth2 & Identity** — Integrating Google OAuth2 login with JWT-based authentication flows
 - **Containerization** — Dockerizing a Spring Boot app for consistent, portable deployments
 - **Reverse proxying** — Configuring Nginx for SSL termination and API routing
 - **Cloud deployment** — Provisioning, deploying, and debugging on AWS EC2 + RDS
