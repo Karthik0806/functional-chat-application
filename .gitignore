@@ -20,7 +20,6 @@ src/main/resources/application-*.properties
 !src/main/resources/application.properties
 
 ### Static Files ###
-src/main/resources/static/index.html
 
 ### Environment Files ###
 .env
