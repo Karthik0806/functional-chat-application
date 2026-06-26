@@ -53,7 +53,6 @@ class WebSocketEventListenerTest {
         verifyNoInteractions(onlineUserService);
     }
 
-    // --------------------------------------------------------------- helpers
     private SessionConnectedEvent connectedEvent(String username) {
         var auth = new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
         StompHeaderAccessor accessor = StompHeaderAccessor.create(StompCommand.CONNECTED);

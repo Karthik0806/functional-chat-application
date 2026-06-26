@@ -26,7 +26,6 @@ class ChatServiceTest {
     @Mock MessageRepo messageRepo;
     @InjectMocks ChatService chatService;
 
-    // --------------------------------------------------------------- save()
     @Nested
     @DisplayName("save()")
     class Save {
@@ -65,7 +64,6 @@ class ChatServiceTest {
         }
     }
 
-    // ---------------------------------------------------------- updateStatus()
     @Nested
     @DisplayName("updateStatus()")
     class UpdateStatus {
@@ -83,7 +81,6 @@ class ChatServiceTest {
         }
     }
 
-    // -------------------------------------------------------- getChatMessages()
     @Nested
     @DisplayName("getChatMessages()")
     class GetChatMessages {
@@ -110,7 +107,6 @@ class ChatServiceTest {
         }
     }
 
-    // -------------------------------------------------------- markMessagesAsRead()
     @Nested
     @DisplayName("markMessagesAsRead()")
     class MarkMessagesAsRead {
@@ -140,7 +136,6 @@ class ChatServiceTest {
         }
     }
 
-    // --------------------------------------------------------------- helpers
     private ChatMessage chatMsg(String receiver, String content) {
         return ChatMessage.builder().receiver(receiver).content(content).build();
     }

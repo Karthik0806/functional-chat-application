@@ -26,7 +26,6 @@ class ConversationServiceTest {
     @Mock ConversationRepo conversationRepo;
     @InjectMocks ConversationService conversationService;
 
-    // ----------------------------------------- createOrUpdateConversation()
     @Nested
     @DisplayName("createOrUpdateConversation()")
     class CreateOrUpdate {
@@ -34,7 +33,6 @@ class ConversationServiceTest {
         @Test
         @DisplayName("creates new conversation when none exists — user1/user2 sorted lexicographically")
         void createsNewConversation() {
-            // "alice" < "bob" lexicographically → user1=alice, user2=bob
             when(conversationRepo.findByUser1AndUser2("alice", "bob")).thenReturn(Optional.empty());
             when(conversationRepo.save(any())).thenAnswer(inv -> inv.getArgument(0));
 
@@ -47,7 +45,6 @@ class ConversationServiceTest {
             assertThat(saved.getUser1()).isEqualTo("alice");
             assertThat(saved.getUser2()).isEqualTo("bob");
             assertThat(saved.getLastMessage()).isEqualTo("hey");
-            // alice sends, bob receives → unreadCountUser2 = 1
             assertThat(saved.getUnreadCountUser2()).isEqualTo(1);
             assertThat(saved.getUnreadCountUser1()).isEqualTo(0);
         }
@@ -59,7 +56,6 @@ class ConversationServiceTest {
             when(conversationRepo.findByUser1AndUser2("alice", "bob")).thenReturn(Optional.of(existing));
             when(conversationRepo.save(any())).thenAnswer(inv -> inv.getArgument(0));
 
-            // alice sends to bob → bob is user2 → unreadCountUser2 should become 3
             conversationService.createOrUpdateConversation("alice", "bob", "another msg");
 
             ArgumentCaptor<Conversation> cap = ArgumentCaptor.forClass(Conversation.class);
@@ -86,7 +82,6 @@ class ConversationServiceTest {
         }
     }
 
-    // ----------------------------------------------- markConversationAsRead()
     @Nested
     @DisplayName("markConversationAsRead()")
     class MarkAsRead {
@@ -94,7 +89,6 @@ class ConversationServiceTest {
         @Test
         @DisplayName("zeroes unread count for user1 when user1 reads")
         void zeroesUnreadForUser1() {
-            // sender=bob reads → receiver=alice who is user1
             var conv = conversation("alice", "bob", 5, 0);
             when(conversationRepo.findByUser1AndUser2("alice", "bob")).thenReturn(Optional.of(conv));
 
@@ -127,7 +121,6 @@ class ConversationServiceTest {
         }
     }
 
-    // ----------------------------------------------- getUserConversations()
     @Nested
     @DisplayName("getUserConversations()")
     class GetUserConversations {
@@ -172,7 +165,6 @@ class ConversationServiceTest {
         }
     }
 
-    // --------------------------------------------------------------- helpers
     private Conversation conversation(String user1, String user2, int unread1, int unread2) {
         return Conversation.builder()
                 .user1(user1).user2(user2)

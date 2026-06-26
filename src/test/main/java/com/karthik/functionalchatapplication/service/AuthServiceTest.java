@@ -53,7 +53,6 @@ class AuthServiceTest {
                 .id(2L).username("karthik@gmail.com").password("").provider(AuthProvider.GOOGLE).build();
     }
 
-    // ------------------------------------------------------------------ login
     @Nested
     @DisplayName("login()")
     class Login {
@@ -104,7 +103,6 @@ class AuthServiceTest {
         }
     }
 
-    // --------------------------------------------------------------- register
     @Nested
     @DisplayName("register()")
     class Register {
@@ -133,7 +131,6 @@ class AuthServiceTest {
         }
     }
 
-    // ------------------------------------------------------------- refreshToken
     @Nested
     @DisplayName("refreshToken()")
     class RefreshTokenTests {
@@ -179,7 +176,6 @@ class AuthServiceTest {
         }
     }
 
-    // -------------------------------------------------------------- logout
     @Nested
     @DisplayName("logout()")
     class Logout {
@@ -202,7 +198,6 @@ class AuthServiceTest {
         }
     }
 
-    // --------------------------------------------------------------- helpers
     private LoginRequest loginRequest(String username, String password) {
         var r = new LoginRequest(); r.setUsername(username); r.setPassword(password); return r;
     }

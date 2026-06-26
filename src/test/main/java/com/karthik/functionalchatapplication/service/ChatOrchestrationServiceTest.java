@@ -59,7 +59,6 @@ class ChatOrchestrationServiceTest {
 
             verify(chatService).save("alice", dto);
             verify(conversationService).createOrUpdateConversation("alice", "bob", "Hello");
-            // status must NOT be updated to DELIVERED for offline user
             verify(chatService, never()).updateStatus(any(), eq(MessageStatus.DELIVERED));
             verify(messagingTemplate).convertAndSendToUser(eq("bob"), eq("/queue/messages"), eq(sentMessage));
         }
@@ -100,7 +99,6 @@ class ChatOrchestrationServiceTest {
         }
     }
 
-    // --------------------------------------------------------------- helpers
     private ChatMessage chatMsg(String receiver, String content) {
         return ChatMessage.builder().receiver(receiver).content(content).build();
     }

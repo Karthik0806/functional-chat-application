@@ -28,7 +28,6 @@ class WebSocketAuthInterceptorTest {
     @Mock MessageChannel channel;
     @InjectMocks WebSocketAuthInterceptor interceptor;
 
-    // -------------------------------------------------------- CONNECT frames
     @Nested
     @DisplayName("CONNECT frame")
     class ConnectFrame {
@@ -65,7 +64,6 @@ class WebSocketAuthInterceptorTest {
         }
     }
 
-    // -------------------------------------------------------- Non-CONNECT frames
     @Nested
     @DisplayName("Non-CONNECT frames (SEND, SUBSCRIBE, etc.)")
     class NonConnectFrames {
@@ -95,22 +93,14 @@ class WebSocketAuthInterceptorTest {
         }
     }
 
-    // --------------------------------------------------------------- helpers
     private Message<?> connectMessage(String token) {
         StompHeaderAccessor accessor = StompHeaderAccessor.create(StompCommand.CONNECT);
-
         accessor.setLeaveMutable(true);
-
         Map<String, Object> sessionAttributes = new HashMap<>();
         if (token != null) {
             sessionAttributes.put("token", token);
         }
-
         accessor.setSessionAttributes(sessionAttributes);
-
-        return MessageBuilder.createMessage(
-                new byte[0],
-                accessor.getMessageHeaders()
-        );
+        return MessageBuilder.createMessage(new byte[0], accessor.getMessageHeaders());
     }
 }
