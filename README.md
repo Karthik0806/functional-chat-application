@@ -45,6 +45,7 @@
   </tr>
 </table>
 
+
 <img src="./screenshots/chat.png" width="90%"/>
 <br/><em>Chat Interface</em>
 
